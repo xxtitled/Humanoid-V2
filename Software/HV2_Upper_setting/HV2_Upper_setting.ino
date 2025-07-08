@@ -149,6 +149,8 @@ void loop() {
     case 'z': case 'Z': // --> 다리 찢기
       setGroupA(50, 90, 90, 120);
       setGroupB(130, 90, 90, 60);
+      setGroupC(90, 135, 90);  // L
+      setGroupD(90, 45, 90);    // R
       Serial.println("Preset Z applied");
       break;
 
