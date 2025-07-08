@@ -11,16 +11,16 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 #define SERVOMAX   600
 #define SERVO_FREQ 50
 
-// 각 그룹 서보 수
+// [] 그룹에 묶어서 제어하는 다리 수 --> 즉 A그룹에서는 Left Leg 한 개, B 그룹에서는 Right Leg 한 개; 따라서 GROUP_SIZE = 1
 const uint8_t GROUP_SIZE = 1;
 
-// 그룹 A: L 다리 채널 (골반, 힙, 무릎, 발목)
+// 그룹 A: Left 다리 채널 (골반, 힙, 무릎, 발목)
 const uint8_t PELVIS_A[GROUP_SIZE] = {3};
 const uint8_t HIP_A[GROUP_SIZE]    = {2};
 const uint8_t KNEE_A[GROUP_SIZE]   = {1};
 const uint8_t ANKLE_A[GROUP_SIZE]  = {0};
 
-// 그룹 B: R 다리 채널 (골반, 힙, 무릎, 발목)
+// 그룹 B: Right 다리 채널 (골반, 힙, 무릎, 발목)
 const uint8_t PELVIS_B[GROUP_SIZE] = {7};
 const uint8_t HIP_B[GROUP_SIZE]    = {6};
 const uint8_t KNEE_B[GROUP_SIZE]   = {5};
@@ -53,7 +53,7 @@ void setup() {
   // 시리얼 통신, I2C, PWM 드라이버 초기화
   Serial.begin(115200);
   delay(100);
-  Wire.begin(SDA_PIN, SCL_PIN);         // ← 반드시 추가!
+  Wire.begin(SDA_PIN, SCL_PIN); 
   pwm.begin();
   pwm.setPWMFreq(SERVO_FREQ);
   delay(10);
@@ -69,17 +69,40 @@ void loop() {
   if (!Serial.available()) return;
   char cmd = Serial.read();
   switch (cmd) {
+
     case 'q': case 'Q': // --> 완전히 일어나기
       // Preset Q
       setGroupA(90, 45, 135, 90);
       setGroupB(90, 135, 45, 90);
       Serial.println("Preset Q applied");
       break;
-    case 'w': case 'W': // --> 깊게 앉기
+
+    case 'w': case 'W': // --> 일어나기
+      // Preset Q
+      setGroupA(90, 60, 120, 90);
+      setGroupB(90, 120, 60, 90);
+      Serial.println("Preset Q applied");1
+      break;
+
+    case 'e': case 'E': // --> 완전히 앉기
+      setGroupA(90, 150, 30, 90);
+      setGroupB(90, 30, 150, 90);
+      Serial.println("Preset W applied");
+      break;
+
+    case 'r': case 'R': // --> 앉기
       setGroupA(90, 135, 45, 90);
       setGroupB(90, 45, 135, 90);
       Serial.println("Preset W applied");
       break;
+
+    case '1': // --> 초기 각도
+      setGroupA(90, 90, 90, 90);
+      setGroupB(90, 90, 90, 90);
+      Serial.println("Preset 1 applied");
+      break;
+
+
     default:
       // 기타 입력 무시
       break;
