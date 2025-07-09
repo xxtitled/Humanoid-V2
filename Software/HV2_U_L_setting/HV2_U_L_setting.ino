@@ -123,29 +123,37 @@ void loop() {
     case 'e': case 'E': // --> 완전히 앉기 & 팔 굽히기
       setGroupA(90, 150, 30, 90);
       setGroupB(90, 30, 150, 90);
-      setGroupC(90, 90, 135);  // L
-      setGroupD(90, 90, 45);   // R
+      setGroupC(90, 95, 135);  // L
+      setGroupD(90, 85, 45);   // R
+      setGroupE(90);
       Serial.println("Preset E applied");
       break;
 
-    case 'r': case 'R': // --> 앉기 & 팔 덜 굽히기
-      setGroupA(90, 135, 45, 90);
-      setGroupB(90, 45, 135, 90);
-      setGroupC(90, 90, 120);  // L
-      setGroupD(90, 90, 60);   // R
+    case 'r': case 'R': // --> 힙 접고, 무릎 펴기, 팔 하프 굽히기
+      setGroupA(90, 150, 90, 90);
+      setGroupB(90, 30, 90, 90);
+      setGroupC(90, 95, 120);  // L
+      setGroupD(90, 85, 60);   // R
+      setGroupE(90);
       Serial.println("Preset R applied");
       break;
 
     /* ------------ 보행 ------------ */
-    case 'a': case 'A': // --> Left up
+    case 'a': case 'A': //  --> Right up
       setGroupA(85, 70, 110, 95);
-      setGroupB(95, 90, 90, 95); // R
+      setGroupB(95, 90, 90, 95);    // R
+      setGroupC(110, 100, 110);      // L_ARM
+      setGroupD(90, 80, 90);         
+      setGroupE(105);
       Serial.println("Preset A applied");
       break;
 
-    case 's': case 'S': // -->  Right up
-      setGroupA(85, 90, 90, 85); // L
+    case 's': case 'S': //  -->  Left up
+      setGroupA(85, 90, 90, 85);      // L
       setGroupB(95, 110, 70, 85);
+      setGroupC(90, 100, 90);          
+      setGroupD(70, 80, 70);          // R_ARM
+      setGroupE(75);
       Serial.println("Preset S applied");
       break;
     /* ------------------------------------ */
@@ -155,16 +163,18 @@ void loop() {
       setGroupB(130, 90, 90, 60);
       setGroupC(90, 135, 90);  // L
       setGroupD(90, 45, 90);   // R
+      setGroupE(90);
       Serial.println("Preset Z applied");
       break;
 
     /* ------------- UPPER ------------- */
 
-    case 'x': case 'X': // --> 손 모으기
+    case 'x': case 'X': // --> 수정해야 함
       setGroupA(90, 90, 90, 90);
       setGroupB(90, 90, 90, 90);
-      setGroupC(150, 70, 120);  // L
-      setGroupD(30, 110, 60);   // R
+      setGroupC(180, 70, 120);  // L
+      setGroupD(0, 110, 60);   // R
+      setGroupE(90);
       Serial.println("Preset X applied");
       break;
 
@@ -208,8 +218,8 @@ void loop() {
     case '1': // --> 초기 각도
       setGroupA(90, 90, 90, 90);
       setGroupB(90, 90, 90, 90);
-      setGroupC(90, 90, 90);
-      setGroupD(90, 90, 90);
+      setGroupC(90, 95, 90);
+      setGroupD(90, 85, 90);
       setGroupE(90);
       Serial.println("Preset 1 applied");
       break;
