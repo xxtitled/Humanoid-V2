@@ -123,8 +123,8 @@ void loop() {
     case 'e': case 'E': // --> 완전히 앉기 & 팔 굽히기
       setGroupA(90, 150, 30, 90);
       setGroupB(90, 30, 150, 90);
-      setGroupC(90, 95, 135);  // L
-      setGroupD(90, 85, 45);   // R
+      setGroupC(90, 100, 135);  // L
+      setGroupD(90, 80, 45);   // R
       setGroupE(90);
       Serial.println("Preset E applied");
       break;
@@ -132,8 +132,8 @@ void loop() {
     case 'r': case 'R': // --> 힙 접고, 무릎 펴기, 팔 하프 굽히기
       setGroupA(90, 150, 90, 90);
       setGroupB(90, 30, 90, 90);
-      setGroupC(90, 95, 120);  // L
-      setGroupD(90, 85, 60);   // R
+      setGroupC(90, 100, 120);  // L
+      setGroupD(90, 80, 60);   // R
       setGroupE(90);
       Serial.println("Preset R applied");
       break;
@@ -197,8 +197,8 @@ void loop() {
     case '0': // --> 보행 각도 세팅
       setGroupA(90, 55, 125, 90);
       setGroupB(90, 125, 55, 90);
-      setGroupC(90, 95, 90);
-      setGroupD(90, 85, 90);
+      setGroupC(90, 100, 90);
+      setGroupD(90, 80, 90);
       setGroupE(90);
       Serial.println("Preset 0 applied");
       break;
@@ -214,16 +214,16 @@ void loop() {
       Serial.println("Preset Z applied");
       break;
 
-    /* ------------- UPPER ------------- */
-
-    case 'x': case 'X': // --> 수정해야 함
-      setGroupA(90, 90, 90, 90);
-      setGroupB(90, 90, 90, 90);
-      setGroupC(180, 70, 120);  // L
-      setGroupD(0, 110, 60);   // R
+     case 'x': case 'X': // --> 다리 덜 벌리기
+      setGroupA(70, 90, 90, 110);
+      setGroupB(110, 90, 90, 70);
+      setGroupC(90, 135, 85);  // L
+      setGroupD(90, 45, 95);   // R
       setGroupE(90);
       Serial.println("Preset X applied");
       break;
+
+    /* ------------- UPPER ------------- */
 
     case 'd': case 'D': // --> 팔 X축과 평행하게 펴기
       setGroupC(180, 90, 80);  // L
@@ -265,8 +265,8 @@ void loop() {
     case '1': // --> 초기 각도
       setGroupA(90, 90, 90, 90);
       setGroupB(90, 90, 90, 90);
-      setGroupC(90, 95, 90);
-      setGroupD(90, 85, 90);
+      setGroupC(90, 100, 90);
+      setGroupD(90, 80, 90);
       setGroupE(90);
       Serial.println("Preset 1 applied");
       break;
