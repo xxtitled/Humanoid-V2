@@ -128,6 +128,18 @@ void go() { // 전진
   setGroupC(75, 100, 90);          
   setGroupD(75, 80, 75);          // R_ARM
   setGroupE(85);
+  delay(1000);
+  setGroupA(90, 30, 120, 90);
+  setGroupB(90, 105, 60, 90);       // R
+  setGroupC(105, 100, 105);         // L_ARM
+  setGroupD(105, 80, 90);         
+  setGroupE(95);
+  delay(1000);
+  setGroupA(90, 75, 110, 90);      // L Knee 앞으로
+  setGroupB(90, 150, 60, 90);      // --> Hip & Knee 조금 더 뒤로 셋백
+  setGroupC(75, 100, 90);          
+  setGroupD(75, 80, 75);          // R_ARM
+  setGroupE(85);
   Serial.println("Go-ahead"); // 앞으로 가기
 }
 
@@ -177,6 +189,23 @@ void guard() { // 가드
   Serial.println("Guard");
 }
 
+void xaxis() { // 팔 X축과 평행하게 펴기
+  setGroupA(90, 90, 90, 90);
+  setGroupB(90, 90, 90, 90);
+  setGroupC(180, 90, 80);  // L
+  setGroupD(0, 90, 100);   // R
+  setGroupE(90);   //
+  Serial.println("X-axis");
+}
+
+void yaxis() { // 팔 Y축과 평행하게 펴기
+  setGroupA(90, 90, 90, 90);
+  setGroupB(90, 90, 90, 90);
+  setGroupC(90, 180, 90);  // L
+  setGroupD(90, 0, 90);    // R
+  setGroupE(90);   //
+  Serial.println("Y-axis");
+}
 
 void loop() {
   if (SerialBT.available()) {
@@ -184,26 +213,32 @@ void loop() {
     cmd.trim();
     Serial.print("CMD> "); Serial.println(cmd);
 
-    if (cmd.equalsIgnoreCase("stop") || cmd.equals("멈춰") {
+    if (cmd.equalsIgnoreCase("stop") || cmd.equals("멈춰")) {
       stop();
     }
     else if (cmd.equalsIgnoreCase("go") || cmd.equals("앞으로가") || cmd.equals("전진")) {
       go();
     }
-    else if (cmd.equalsIgnoreCase("standup") || cmd.equalsIgnoreCase("일어나") {
+    else if (cmd.equalsIgnoreCase("up") || cmd.equalsIgnoreCase("일어나")) {
       standup();
     }
-    else if (cmd.equalsIgnoreCase("sitdown") || cmd.equals("앉아")) {
+    else if (cmd.equalsIgnoreCase("down") || cmd.equals("앉아") || cmd.equals("아래")) {
       sitdown();
     }
-    else if (cmd.equalsIgnoreCase("left") || cmd.equals("왼손")) || cmd.equals("투")) {
+    else if (cmd.equalsIgnoreCase("left") || cmd.equals("왼손") || cmd.equals("투")) {
       left();
     }
-    else if (cmd.equalsIgnoreCase("right") || cmd.equals("오른손")) || cmd.equals("원")){
+    else if (cmd.equalsIgnoreCase("right") || cmd.equals("오른손") || cmd.equals("원")) {
       right();
     }
-    else if (cmd.equalsIgnoreCase("guard") || cmd.equals("가드")) {
+    else if (cmd.equalsIgnoreCase("guard") || cmd.equals("가드") || cmd.equals("방어")) {
       guard();
+    }
+    else if (cmd.equalsIgnoreCase("X축") || cmd.equals("앞으로")) {
+      xaxis();
+    }
+    else if (cmd.equalsIgnoreCase("Y축") || cmd.equals("만세")) {
+      yaxis();
     }
     else {
       Serial.println("Unknown command");
