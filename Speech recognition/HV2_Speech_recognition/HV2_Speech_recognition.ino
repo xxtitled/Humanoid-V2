@@ -128,7 +128,7 @@ void go() { // 전진
   setGroupC(75, 100, 90);          
   setGroupD(75, 80, 75);          // R_ARM
   setGroupE(85);
-  Serial.println("Go ahead"); // 앞으로 가기
+  Serial.println("Go-ahead"); // 앞으로 가기
 }
 
 void standup() { // 일어나기
@@ -141,7 +141,7 @@ void standup() { // 일어나기
   Serial.println("Stand-up");
 }
 
-void standup() { // 앉기
+void sitdown() { // 앉기
   setGroupA(90, 150, 30, 90);
   setGroupB(90, 30, 150, 90);
   setGroupC(90, 100, 135);  // L
@@ -150,6 +150,32 @@ void standup() { // 앉기
   Serial.println("Sit-down"); //  완전히 앉기 & 팔 굽히기
 }
 
+void left() { // 왼손 스트레이트
+  setGroupA(90, 90, 90, 90);
+  setGroupB(90, 90, 90, 90);
+  setGroupC(180, 90, 80);  // L
+  setGroupD(45, 90, 5);   // R --> 가드
+  setGroupE(115);
+  Serial.println("Straight-left");
+}
+
+void right() { // 오른손 스트레이트
+  setGroupA(90, 90, 90, 90);
+  setGroupB(90, 90, 90, 90);
+  setGroupC(135, 90, 175);  // L --> 가드
+  setGroupD(0, 90, 100);    // R
+  setGroupE(65);   //
+  Serial.println("Straight-right");
+}
+
+void guard() { // 가드
+  setGroupA(90, 90, 90, 90);
+  setGroupB(90, 90, 90, 90);
+  setGroupC(145, 70, 175);  // L
+  setGroupD(35, 110, 5);   // R
+  setGroupE(90);   //
+  Serial.println("Guard");
+}
 
 
 void loop() {
@@ -158,17 +184,26 @@ void loop() {
     cmd.trim();
     Serial.print("CMD> "); Serial.println(cmd);
 
-    if (cmd.equalsIgnoreCase("spot") || cmd.equals("멈춰") {
-      openAll();
+    if (cmd.equalsIgnoreCase("stop") || cmd.equals("멈춰") {
+      stop();
     }
     else if (cmd.equalsIgnoreCase("go") || cmd.equals("앞으로가") || cmd.equals("전진")) {
-      closeAll();
+      go();
     }
     else if (cmd.equalsIgnoreCase("standup") || cmd.equalsIgnoreCase("일어나") {
-      scissors();
+      standup();
     }
     else if (cmd.equalsIgnoreCase("sitdown") || cmd.equals("앉아")) {
-      promise();
+      sitdown();
+    }
+    else if (cmd.equalsIgnoreCase("left") || cmd.equals("왼손")) || cmd.equals("투")) {
+      left();
+    }
+    else if (cmd.equalsIgnoreCase("right") || cmd.equals("오른손")) || cmd.equals("원")){
+      right();
+    }
+    else if (cmd.equalsIgnoreCase("guard") || cmd.equals("가드")) {
+      guard();
     }
     else {
       Serial.println("Unknown command");
