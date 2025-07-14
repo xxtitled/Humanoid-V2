@@ -106,7 +106,7 @@ void loop() {
     char data = Serial.read();
 
     switch (data) {
-      case '1': // 손가락을 모두 편 상태
+      case '1': // 편 손가락의 개수: 1
         setGroupA(90, 90, 90, 90);
         setGroupB(90, 90, 90, 90);
         setGroupC(90, 100, 90);
@@ -115,8 +115,7 @@ void loop() {
         // Serial.println("Spot"); // 멈추기 & 초기 각도
         break;
     
-
-      case '2':// 손가락을 모두 접은 상태
+      case '2':// 편 손가락의 개수: 2
         setGroupA(90, 30, 120, 90);
         setGroupB(90, 105, 60, 90);       // R
         setGroupC(105, 100, 105);         // L_ARM
@@ -140,10 +139,10 @@ void loop() {
         setGroupC(75, 100, 90);          
         setGroupD(75, 80, 75);          // R_ARM
         setGroupE(85);
-        // Serial.println("Go ahead"); // 앞으로 가기
+        // Serial.println("Go ahead"); // 전진
         break;
  
-      case '3': // 검지만 편 상태
+      case '3': // 편 손가락의 개수: 3
         setGroupA(90, 45, 135, 90);     // Left Leg
         setGroupB(90, 135, 45, 90);     // Right Leg
         setGroupC(90, 100, 90);
@@ -152,13 +151,34 @@ void loop() {
         // Serial.println("Full stand"); // 완전히 일어나기
         break;
    
-      case '4': // 검지만 접은 상태
+      case '4': // 편 손가락의 개수: 4
         setGroupA(90, 150, 30, 90);
         setGroupB(90, 30, 150, 90);
         setGroupC(90, 100, 135);  // L
         setGroupD(90, 80, 45);   // R
         setGroupE(90);
         // Serial.println("Sit-down"); //  완전히 앉기 & 팔 굽히기
+        break;
+
+      case '5': // 편 손가락의 개수: 5 --> 원 투
+        setGroupA(90, 90, 90, 90);
+        setGroupB(90, 90, 90, 90);
+        setGroupC(180, 90, 80);  // L 왼손 스트레이트
+        setGroupD(45, 90, 5);   // R
+        setGroupE(115);
+        delay(1000);
+        setGroupC(135, 90, 175);  // L
+        setGroupD(0, 90, 100);   // R 오른손 스트레이트
+        setGroupE(65);
+        // Serial.println("Sit-down"); //  완전히 앉기 & 팔 굽히기
+        break;
+
+      case '0': // 정지
+        setGroupA(90, 90, 90, 90);
+        setGroupB(90, 90, 90, 90);
+        setGroupC(90, 90, 90);  
+        setGroupD(90, 90, 90);   
+        setGroupE(90);
         break;
 
       default:
