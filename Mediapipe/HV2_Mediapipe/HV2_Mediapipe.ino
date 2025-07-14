@@ -103,52 +103,69 @@ void setup() {
 
 void loop() {
   while (Serial.available() > 0) {
-    char data = Serial.read();{
+    char data = Serial.read();
 
-    /* ------------- LOWER ------------- */
+    switch (data) {
+      case '1': // 손가락을 모두 편 상태
+        setGroupA(90, 90, 90, 90);
+        setGroupB(90, 90, 90, 90);
+        setGroupC(90, 100, 90);
+        setGroupD(90, 80, 90);
+        setGroupE(90);
+        // Serial.println("Spot"); // 멈추기 & 초기 각도
+        break;
+    
 
-    if (data == '2') { // 손가락을 모두 편 상태
-      setGroupA(90, 90, 90, 90);
-      setGroupB(90, 90, 90, 90);
-      setGroupC(90, 100, 90);
-      setGroupD(90, 80, 90);
-      setGroupE(90);
-      Serial.println("Spot"); // 멈추기 & 초기 각도
-    }
-
-    if (data == '1') { // 손가락을 모두 접은 상태
-      setGroupA(90, 30, 120, 90);
-      setGroupB(90, 105, 60, 90);       // R
-      setGroupC(105, 100, 105);         // L_ARM
-      setGroupD(105, 80, 90);         
-      setGroupE(95);
-      delay(1000);
-      setGroupA(90, 75, 110, 90);      // L Knee 앞으로
-      setGroupB(90, 150, 60, 90);      // --> Hip & Knee 조금 더 뒤로 셋백
-      setGroupC(75, 100, 90);          
-      setGroupD(75, 80, 75);          // R_ARM
-      setGroupE(85);
-      Serial.println("Go ahead"); // 앞으로 가기
-    }
+      case '2':// 손가락을 모두 접은 상태
+        setGroupA(90, 30, 120, 90);
+        setGroupB(90, 105, 60, 90);       // R
+        setGroupC(105, 100, 105);         // L_ARM
+        setGroupD(105, 80, 90);         
+        setGroupE(95);
+        delay(1000);
+        setGroupA(90, 75, 110, 90);      // L Knee 앞으로
+        setGroupB(90, 150, 60, 90);      // --> Hip & Knee 조금 더 뒤로 셋백
+        setGroupC(75, 100, 90);          
+        setGroupD(75, 80, 75);          // R_ARM
+        setGroupE(85);
+        delay(1000);
+        setGroupA(90, 30, 120, 90);
+        setGroupB(90, 105, 60, 90);       // R
+        setGroupC(105, 100, 105);         // L_ARM
+        setGroupD(105, 80, 90);         
+        setGroupE(95);
+        delay(1000);
+        setGroupA(90, 75, 110, 90);      // L Knee 앞으로
+        setGroupB(90, 150, 60, 90);      // --> Hip & Knee 조금 더 뒤로 셋백
+        setGroupC(75, 100, 90);          
+        setGroupD(75, 80, 75);          // R_ARM
+        setGroupE(85);
+        // Serial.println("Go ahead"); // 앞으로 가기
+        break;
  
-    if (data == '3') { // 검지만 편 상태
-      setGroupA(90, 45, 135, 90);     // Left Leg
-      setGroupB(90, 135, 45, 90);     // Right Leg
-      setGroupC(90, 100, 90);
-      setGroupD(90, 80, 90);
-      setGroupE(90);
-      Serial.println("Full stand"); // 완전히 일어나기
-    }
+      case '3': // 검지만 편 상태
+        setGroupA(90, 45, 135, 90);     // Left Leg
+        setGroupB(90, 135, 45, 90);     // Right Leg
+        setGroupC(90, 100, 90);
+        setGroupD(90, 80, 90);
+        setGroupE(90);
+        // Serial.println("Full stand"); // 완전히 일어나기
+        break;
    
-    if (data == '4') { // 검지만 접은 상태
-      setGroupA(90, 150, 30, 90);
-      setGroupB(90, 30, 150, 90);
-      setGroupC(90, 100, 135);  // L
-      setGroupD(90, 80, 45);   // R
-      setGroupE(90);
-      Serial.println("Sit-down"); //  완전히 앉기 & 팔 굽히기
+      case '4': // 검지만 접은 상태
+        setGroupA(90, 150, 30, 90);
+        setGroupB(90, 30, 150, 90);
+        setGroupC(90, 100, 135);  // L
+        setGroupD(90, 80, 45);   // R
+        setGroupE(90);
+        // Serial.println("Sit-down"); //  완전히 앉기 & 팔 굽히기
+        break;
+
+      default:
+
+        break;  
+
     }
-    delay(10); // 과부화 방지
-   
   }
+  delay(50); // 과부화 방지
 }
