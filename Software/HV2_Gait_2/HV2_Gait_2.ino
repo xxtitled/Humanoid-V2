@@ -147,29 +147,66 @@ void loop() {
     /* ------------ 보행 ------------ */
     
     case 'a': case 'A': // --> 전진
+      setGroupA(90, 60, 120, 90);
+      setGroupB(90, 120, 60, 90);         
+      delay(500); // 초기화
       setGroupA(90, 30, 120, 90);       // 오른발 앞으로
       setGroupB(90, 105, 60, 90);       // R
       setGroupC(105, 100, 105);         // L_ARM
       setGroupD(105, 80, 90);         
       setGroupE(95);
-      delay(1000);
+      delay(500);
       setGroupA(90, 75, 110, 90);      // 왼발 앞으로
       setGroupB(90, 150, 60, 90);      // --> Hip & Knee 조금 더 뒤로 셋백
       setGroupC(75, 100, 90);          
       setGroupD(75, 80, 75);          // R_ARM
       setGroupE(85);
-      delay(1000);
+      delay(500);
       setGroupA(90, 30, 120, 90);       // 오른발 앞으로
       setGroupB(90, 105, 60, 90);       // R
       setGroupC(105, 100, 105);         // L_ARM
       setGroupD(105, 80, 90);         
       setGroupE(95);
-      delay(1000);
+      delay(500);
       setGroupA(90, 75, 110, 90);      // 왼발 앞으로
       setGroupB(90, 150, 60, 90);      // --> Hip & Knee 조금 더 뒤로 셋백
       setGroupC(75, 100, 90);          
       setGroupD(75, 80, 75);          // R_ARM
       setGroupE(85);
+      delay(500);
+      setGroupA(90, 60, 120, 90);
+      setGroupB(90, 120, 60, 90);
+      setGroupE(90);      
+      delay(500); // 초기화
+      setGroupA(90, 30, 120, 90);       // 오른발 앞으로
+      setGroupB(90, 105, 60, 90);       // R
+      setGroupC(105, 100, 105);         // L_ARM
+      setGroupD(105, 80, 90);         
+      setGroupE(95);
+      delay(500);
+      setGroupA(90, 75, 110, 90);      // 왼발 앞으로
+      setGroupB(90, 150, 60, 90);      // --> Hip & Knee 조금 더 뒤로 셋백
+      setGroupC(75, 100, 90);          
+      setGroupD(75, 80, 75);          // R_ARM
+      setGroupE(85);
+      delay(500);
+      setGroupA(90, 30, 120, 90);       // 오른발 앞으로
+      setGroupB(90, 105, 60, 90);       // R
+      setGroupC(105, 100, 105);         // L_ARM
+      setGroupD(105, 80, 90);         
+      setGroupE(95);
+      delay(500);
+      setGroupA(90, 75, 110, 90);      // 왼발 앞으로
+      setGroupB(90, 150, 60, 90);      // --> Hip & Knee 조금 더 뒤로 셋백
+      setGroupC(75, 100, 90);          
+      setGroupD(75, 80, 75);          // R_ARM
+      setGroupE(85);
+      delay(400); // 초기 자세로 회귀
+      setGroupA(90, 90, 90, 90);
+      setGroupB(90, 90, 90, 90);
+      setGroupC(90, 100, 90); // 
+      setGroupD(90, 80, 90); // 
+      setGroupE(90);
       Serial.println("A: Go Ahead");
       break;
 
